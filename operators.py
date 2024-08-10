@@ -17,6 +17,7 @@ print('multiplication')
 num1 = '2'
 num2 = 4
 result = num1 * num2
+print('kyaw kyaw * 2','=>', 'kyaw kyaw ' * 2)
 print(result)
 
 
@@ -27,6 +28,19 @@ print('division')
 # modulus division  => %
 num1 = 5
 num2 = 2
-print('floor division - ', '5/2', '=>', 5//2)
-print('float division - ', '5/2', '=>', 5/2)
-print('modulus division - ', '5/2', '=>', 5%2)
+print('floor division - ', num1, '//', num2, '=>', num1 // num2)
+print('float division - ', num1, '/', num2, '=>', num1 / num2)
+print('modulus division - ', num1, '%', num2, '=>', num1 % num2)
+
+# exponent
+print('exponent')
+result = 3 ** 2
+print(result)
+
+# operator precedence
+# exponent 
+# multiplication, division
+# addtion, substraction
+print('operator precedence')
+result = 2 ** 2 + 4 / 2 - 2 + 3 * 7 / 2 * 1
+print(result)
