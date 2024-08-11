@@ -11,3 +11,12 @@
   - type() - return the type of data
 - operators
   - arithmetic operators (add, sub, mul, div)
+
+### Custom Ubuntu Linux Terminal with Themes and Plug-ins 
+- https://github.com/pixegami/terminal-profile
+
+```bash
+
+python3 -m pip config set global.break-system-packages true
+
+```
