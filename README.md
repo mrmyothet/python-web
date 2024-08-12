@@ -14,6 +14,8 @@
 
 ### Custom Ubuntu Linux Terminal with Themes and Plug-ins 
 - https://github.com/pixegami/terminal-profile
+- https://github.com/ohmyzsh/ohmyzsh
+- https://notes.leetdev.net/misc/ubuntu-setup
 
 ```bash
 
