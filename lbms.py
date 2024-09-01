@@ -9,7 +9,8 @@ while True:
     print("1. View Book")
     print("2. Add Book")
     print("3. Remove Book")
-    print("4. Exit")
+    print("4. Edit Book")
+    print("5. Exit")
     opt = int(input("Enter your choise : "))
 
     if opt == 1:
@@ -42,6 +43,10 @@ while True:
             print(f"{index+1} : {book}")
 
     if opt == 4:
+        index = int(input("please, provide book number your want to edit."))
+        book_name = input("Please, Enter book name you want to update")
+
+    if opt == 5:
         # run_trigger = False
         break
 
