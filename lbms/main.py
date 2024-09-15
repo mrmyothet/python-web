@@ -1,12 +1,10 @@
 # import controllers
 # controllers.view_book
 
-from controllers import *
+# from lbms.tools import *
 
-# from controllers import view_book, edit_book, add_book, remove_book
-
-
-books = ["Python Book", "Java Book", "C++ Book", "C Book", "Go lang Book"]
+from tools import view_book, edit_book, add_book, remove_book
+from db import books
 
 # run_trigger = True
 
@@ -32,22 +30,23 @@ while True:
 
     # Add Book
     if opt == 2:
-        new_book = input("Enter name of the new book : ")
-        if new_book in books:
-            print("book is already existed in the list")
-        else:
-            add_book(new_book, books)
-            # books.append(new_book)
-            # print(new_book + " is added successfully to the book list. ")
+        add_book(books)
+        # new_book = input("Enter name of the new book : ")
 
-            # print(books)
-            # for index, book in enumerate(books):
-            #     print(f"{index+1} : {book}")
+        # if new_book in books:
+        #     print("book is already existed in the list")
+        # else:
+        #     add_book(new_book, books)
+        # books.append(new_book)
+        # print(new_book + " is added successfully to the book list. ")
+
+        # print(books)
+        # for index, book in enumerate(books):
+        #     print(f"{index+1} : {book}")
 
     # Remove Book
     if opt == 3:
-        book_to_remove = input("Enter book name to remove : ")
-        remove_book(book_to_remove, books)
+        remove_book(books)
 
         # result = books.remove(remove_book)
         # if result != None:
@@ -61,9 +60,10 @@ while True:
 
     # Edit Book
     if opt == 4:
-        index = int(input("please, provide book number your want to edit. : "))
-        book_name = input("Please, Enter book name you want to update : ")
-        edit_book(index - 1, book_name, books)
+        # index = int(input("please, provide book number your want to edit. : "))
+        # book_name = input("Please, Enter book name you want to update : ")
+        # edit_book(index - 1, book_name, books)
+        edit_book(books)
 
     if opt == 5:
         # run_trigger = False
