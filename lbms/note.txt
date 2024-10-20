@@ -1,5 +1,0 @@
-absolute path
-C:\repos\python-web\lbms\controllers.py
-
-relative path
-lbms\controllers.py
