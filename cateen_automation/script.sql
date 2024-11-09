@@ -13,6 +13,8 @@ CREATE DATABASE canteen_automation
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
+
+-- Create Tables 
 use canteen_automation;
 
 CREATE TABLE roles (
@@ -25,6 +27,7 @@ user_id SERIAL PRIMARY KEY,
 role_id int REFERENCES roles(role_id) ON DELETE SET NULL, 
 username varchar(50) NOT NULL,
 password varchar(100), 
+full_name varchar(100),
 email varchar(100), 
 contact_number varchar(15), 
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -80,3 +83,29 @@ CREATE TABLE notifications (
     status VARCHAR(20) DEFAULT 'Unread',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Insert data
+
+INSERT INTO roles (role_name)
+values
+('Admin'), 
+('User');
+
+INSERT INTO users (role_id,username,password,full_name,email,contact_number) 
+VALUES 
+(1,'admin1','password123','Admin One','admin1@test.com','12345'),
+(2,'user1','password456','User One','user1@test.com','1232345');
+
+INSERT INTO inventory (item_id, stock, restock_level)
+VALUES 
+(1, 4, 10),
+(2, 30, 5), 
+(3, 40, 9)
+
+INSERT INTO orders (user_id, status, total_amount)
+VALUES 
+(2, 'Pending', 16.97)
+
+INSERT INTO payments(order_id, amount, payment_method, payment_status)
+VALUES 
+(1, 16.97, 'Credit Card', 'Completed')
