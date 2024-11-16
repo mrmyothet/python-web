@@ -1,7 +1,7 @@
 import psycopg2
 
 conn = psycopg2.connect(
-    dbname="cateen_automation",
+    dbname="canteen_automation",
     user="postgres",
     password="admin123!",
     host="127.0.0.1",
@@ -10,6 +10,14 @@ conn = psycopg2.connect(
 
 print(conn)
 
+# cursor = conn.cursor()
+# cursor.execute("INSERT INTO roles (role_name) VALUES ('Staff')")
+# conn.commit()
+
 cursor = conn.cursor()
-cursor.execute("INSERT INTO roles (role_name) VALUES ('Staff')")
-conn.commit()
+query = "SELECT * FROM roles"
+lst = cursor.execute(query)
+rows = cursor.fetchall()
+# conn.commit()
+
+print(rows)
