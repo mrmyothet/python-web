@@ -12,7 +12,8 @@
 - operators
   - arithmetic operators (add, sub, mul, div)
 
-### Custom Ubuntu Linux Terminal with Themes and Plug-ins 
+### Custom Ubuntu Linux Terminal with Themes and Plug-ins
+
 - https://github.com/pixegami/terminal-profile
 - https://github.com/ohmyzsh/ohmyzsh
 - https://notes.leetdev.net/misc/ubuntu-setup
@@ -22,3 +23,6 @@
 python3 -m pip config set global.break-system-packages true
 
 ```
+
+- python3 -m venv .venv
+- source .venv/bin/activate
