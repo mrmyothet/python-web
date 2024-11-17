@@ -25,10 +25,14 @@ python3 -m pip config set global.break-system-packages true
 ```
 
 ```
+
 python3 -m venv .venv
 source .venv/bin/activate
 
 pip install flask
 pip list
+
+flask --app app run --debug
+flask --app app.py run --port 5000 --debug
 
 ```
