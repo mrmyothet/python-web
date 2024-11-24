@@ -11,7 +11,7 @@ def init():
                    CREATE TABLE IF NOT EXISTS tasks(
                    id INTEGER PRIMARY KEY AUTOINCREMENT,
                    description TEXT NOT NULL,
-                   completed INTEGER DEFAULT 0)
+                   is_completed INTEGER DEFAULT 0)
                    """
     )
     conn.commit()
@@ -41,7 +41,10 @@ def add_task(data):
 def fetch_all_tasks():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.fetchall()
+    cursor.execute("SELECT * FROM tasks")
+    tasks = cursor.fetchall()
+    conn.close()
+    return tasks
 
 
 def make_complete(task_id):
