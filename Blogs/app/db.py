@@ -11,3 +11,7 @@ def get_db():
         port="5434",
     )
     return conn
+
+
+def get_sqlite3_db():
+    pass
