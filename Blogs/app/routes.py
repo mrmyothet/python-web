@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from app.models import create_user, get_all_posts
+from app.models import create_user, get_all_posts, get_user, add_post
 from app.models import validate_user_login
 from werkzeug.security import generate_password_hash
 
@@ -13,9 +13,20 @@ app.secret_key = "Testing123"
 
 
 @app.route("/")
+@app.route("/index")
 def index():
+    try:
+        current_user_id = session["user_id"]
+        user = get_user(user_id=current_user_id)
+    except KeyError:
+        user = [201, "No one logged in"]
+
     posts = get_all_posts()
-    return render_template("index.html", posts=posts)
+
+    for post in posts:
+        print(post)
+
+    return render_template("index.html", posts=posts, user=user)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -49,3 +60,22 @@ def login():
         return "Invalid Information"
 
     return render_template("login.html")
+
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.pop("user_id", None)
+    return redirect("login")
+
+
+@app.route("/create_post", methods=["GET", "POST"])
+def create_post():
+    if request.method == "POST":
+        title = request.form["title"]
+        content = request.form["content"]
+        user_id = session["user_id"]
+        add_post(title, content, user_id)
+
+        return redirect(url_for("index"))
+
+    return render_template("create_post.html")
