@@ -68,7 +68,7 @@ def logout():
     return redirect("login")
 
 
-@app.route("/create_post", methods=["GET", "POST"])
+@app.route("/create-post", methods=["GET", "POST"])
 def create_post():
     if request.method == "POST":
         title = request.form["title"]
