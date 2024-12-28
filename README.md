@@ -36,3 +36,14 @@ flask --app app run --debug
 flask --app app.py run --port 5000 --debug
 
 ```
+
+```bash
+==> postgresql@14
+This formula has created a default database cluster with:
+  initdb --locale=C -E UTF-8 /usr/local/var/postgresql@14
+
+To start postgresql@14 now and restart at login:
+  brew services start postgresql@14
+Or, if you don't want/need a background service you can just run:
+  /usr/local/opt/postgresql@14/bin/postgres -D /usr/local/var/postgresql@14
+```
