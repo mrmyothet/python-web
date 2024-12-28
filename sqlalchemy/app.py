@@ -3,7 +3,10 @@
 
 from sqlalchemy import Column, Integer, String, create_engine
 import psycopg2
-from sqlalchemy.ext.declarative import declarative_base
+
+# from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 
 # conn = psycopg2.connect()
@@ -27,3 +30,43 @@ class User(Base):
 
 
 Base.metadata.create_all(engine)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+users = [
+    ("Aung Aung", 12),
+    ("Maung Maung", 22),
+    ("Hla Hla", 32),
+    ("Mya Mya", 42),
+    ("Ko Ko", 52),
+]
+
+
+# for name, age in users:
+#     new_user = User(name=name, age=age)
+#     session.add(new_user)
+#     print(f"New User added successfully: {name}, {age}")
+
+# Create a new user
+# "INSERT INTO users (name, age) VALUES ('John', 25)"
+# new_user = User(name="Myo Thet", age=38)
+# session.add(new_user)
+
+session.commit()
+# SELECT * FROM users
+users = session.query(User).all()
+print(type(users))
+for user in users:
+    # print(type(user))
+    print(user)
+
+# Filter
+user = session.query(User).filter_by(name="Aung Aung").first()
+print(user)
+
+# Update
+user = session.query(User).filter_by(name="Aung Aung").first()
+user.age = 27
+session.commit()
+print(user)
