@@ -22,13 +22,13 @@
       <h1 class="mb-4">To-Do List</h1>
 
       <!-- Add Task Form -->
-      <form class="d-flex mb-4" method="POST" action="add-task">
+      <form class="d-flex mb-4" method="POST" action="add">
         <input
           type="text"
           id="taskInput"
           class="form-control me-2"
           placeholder="Enter a new task"
-          name="task_name"
+          name="title"
         />
         <button type="submit" id="addTaskBtn" class="btn btn-success">
           Add Task
@@ -37,17 +37,21 @@
 
       <!-- Task List -->
       <ul id="taskList" class="list-group">
-        {% for task in list %}
+        {% for task in tasks %}
 
         <li
           class="list-group-item d-flex justify-content-between align-items-center"
         >
-          {{task.description}}
+          {{task.title}}
           <div>
             {% if task.is_completed == 0 %}
-            <a href="/complete/{{task.id}}" class="btn btn-warning">Complete</a>
+            <a href="/complete/{{task.id}}" class="btn btn-warning"
+              >Make Complete</a
+            >
             {% else %}
-            <a href="/complete/{{task.id}}" class="btn btn-success">Done</a>
+            <a href="/complete/{{task.id}}" class="btn btn-success"
+              >Completed</a
+            >
             {% endif %}
 
             <a href="/delete/{{task.id}}" class="btn btn-danger">Delete</a>
