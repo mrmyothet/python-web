@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Tweets{% endblock %}
+{% block content %}
+<h1 class="my-4">Tweets</h1>
+<a href="{{ url_for('tweet_routes.create_tweet') }}" class="btn btn-primary mb-4">Create a Tweet</a>
+<div class="row">
+    {% for tweet in tweets %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ tweet.content }}</h5>
+                <p class="card-text">Posted by {{ tweet.author.username }} on {{ tweet.created_at.strftime('%Y-%m-%d') }}</p>
+                <a href="{{ url_for('tweet_routes.view_tweet', tweet_id=tweet.id) }}" class="btn btn-info mb-2">View Details</a>
+                <a href="{{ url_for('tweet_routes.edit_tweet', tweet_id=tweet.id) }}" class="btn btn-warning mb-2">Edit</a>
+                <form action="{{ url_for('tweet_routes.delete_tweet', tweet_id=tweet.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger mb-2">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

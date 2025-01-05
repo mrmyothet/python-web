@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Tweet Details{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h1>Tweet by {{ tweet.author.username }}</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ tweet.content }}</p>
+            <p class="text-muted"><small>Posted on {{ tweet.formatted_date() }}</small></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Comments:</h2>
+    <ul class="list-group">
+        {% for comment in tweet.comments %}
+        <li class="list-group-item">
+            <strong>{{ comment.author.username }}</strong>: {{ comment.content }}
+            {% if comment.user_id == session.get('user_id') %}
+            <!-- Edit and Delete buttons for the comment owner -->
+            <div class="float-right">
+                <a href="{{ url_for('comment_routes.edit_comment', comment_id=comment.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                <form action="{{ url_for('comment_routes.delete_comment', comment_id=comment.id) }}" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add a New Comment -->
+    {% if session.get('user_id') %}
+    <div class="mt-4">
+        <form action="{{ url_for('comment_routes.add_comment', tweet_id=tweet.id) }}" method="POST">
+            <div class="form-group">
+                <textarea name="content" class="form-control" placeholder="Write a comment..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Add Comment</button>
+        </form>
+    </div>
+    {% else %}
+    <p class="mt-4"><a href="{{ url_for('user_routes.login') }}" class="btn btn-primary">Login</a> to comment.</p>
+    {% endif %}
+</div>
+{% endblock %}

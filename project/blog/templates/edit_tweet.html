@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Tweet{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Edit Your Tweet</h1>
+
+    <!-- Flash messages for errors or success -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="alert-container mt-3">
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Edit Tweet Form -->
+    <form method="POST" class="mt-4">
+        <div class="mb-3">
+            <label for="content" class="form-label">Edit Tweet Content:</label>
+            <textarea id="content" name="content" class="form-control" rows="3" required>{{ tweet.content }}</textarea>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{{ url_for('tweet_routes.list_tweets') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
